@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { getCategories } from '../../queries/categories'
 import { List } from './styles'
+import { NotFound } from '../../pages/NotFound'
 import { Category } from '../Category/index'
 import { CategoriesFixed } from '../CategoriesFixed/index'
 import { Loading } from '../Loading/index'
@@ -22,6 +23,10 @@ export const CategoriesComponent = () => {
     document.addEventListener('scroll', onScroll)
     return () => document.removeEventListener('scroll', onScroll)
   }, [showFixed])
+
+  if (error) {
+    return <NotFound />
+  }
 
   return (
     <>
